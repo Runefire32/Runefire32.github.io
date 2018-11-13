@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Mon site à moi lol</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+ <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar-logo"><li><a href="/"><img class="logo" class="navbar-left" src="http://image.noelshack.com/fichiers/2018/45/3/1541617446-earth.png"></a></li>
+    </div>
+    
+    <div class="navbar-right" >
+    <div class="dropdown">
+    <button class="btn-dropdownavatar"><img style="top: 0px; right: 10px;" class="logoavatar" src="http://image.noelshack.com/fichiers/2018/46/2/1542116474-kisspng-smiley-emojipedia-astronaut-emoticon-space-astronaut-5b049510b79f75-7793679515270269607521.png">
+      </button>
+    <div class="dropdown-content">
+      <a href="/users/index">Voir tous les potos</a>
+      <a href="/">Profil</a>
+      <a><%= link_to "Sign Out", destroy_user_session_path, method: :delete %> </a>
+    </div>
+  </div>
+     
+
+<!-- Tab content -->
+
+
+
+      <ul class="nav navbar-nav">         
+
+        <% if user_signed_in? %>
+         
+          <% else %>
+
+           
+
+
+
+          <li><a style="top: -10px; right: 10px;" href="/users/sign_in" class="rainbow" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Se connecter</a></li>
+          <li><a style="top: -20px; right: 10px;" href="/users/sign_up" class="rainbow" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Devenir Astronaute</a></li>
+         
+          <% end %>
+          <div class="tab">
+               <a href="/articles/new" class="button" onclick="openCity(event, 'Pose ton idée')">Pose ton idée</a>
+               <a href="/articles#show" class="button" onclick="openCity(event, 'Voir les idées')">Voir les idées</a>
+          
+          <li><a style="top: 0px; right: 10px;" href="/articles/new" class="rainbow" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Pose ton idée</a></li>
+          
+         
+          <li><a href="/articles#show" class="rainbow" >Voir les idées</a></li>
+          
+       
+       </ul>
+      </div>
+      
+      
+
+
+ </nav>
+  
+  <div class="container" class="rainbow">
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, class: "alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do %>
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <%= msg %>
+      <% end %>
+    <% end %>
+
+    <%= yield %>
+  </div>
+</body>
+</html>

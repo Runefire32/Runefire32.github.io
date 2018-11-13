@@ -1,0 +1,31 @@
+
+<% if user_signed_in? %>
+<div class="page-header" >
+  <h1 class="rainbow"> Welcome <%= current_user.fist_name %> </h1>
+  <br>
+  <br>
+</div>
+
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="http://image.noelshack.com/fichiers/2018/46/2/1542141155-kisspng-astronaut-cartoon-clip-art-cute-astronaut-cliparts-5a854ed3b3b5c1-3921119215186859077361.png" alt="Card image cap[100%x180]" data-holder-rendered="true" style="height: 180px; width: 100%; display: block;>
+  <div class="card-body">
+    <h5 class="card-title"><%= current_user.fist_name  %>  <%= current_user.last_name  %></h5>
+    <p class="card-text"  ><--Astronaute confirmé --></p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">AstronauteIndustry</li>
+  </ul>
+  </div>
+
+
+<br>
+<p>You're succesfully registered</p>
+<a style="margin: 0 auto; width:50%;" href="articles#index" class="btn btn-primary btn-lg btn-block ">Voir le contenu</a>
+
+<% else %>
+
+
+<h2 class="rainbow">Welcome , to see content of this website you must be <%= link_to 'registered', new_user_registration_path %></h2>
+<%= link_to 'Create account', new_user_registration_path %>
+
+<% end %>
